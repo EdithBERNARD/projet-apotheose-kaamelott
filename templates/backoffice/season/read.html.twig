@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kaamel'O'tt - Saisons{% endblock %}
+
+{% block body %}
+
+<main>
+    
+    <div class="main-content">
+        <h1>SAISON {{ season.id }}</h1>
+    </div>
+
+    <div class="content">
+        <a href="{{ path('app_backoffice_season_browse') }}" class="btn btn-primary">Retour à la liste</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Titre de la saison</th>
+                    <th scope="col">actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">{{ season.id }}</th>
+                    <td>{{ season.title }}</td>
+                    <td>
+                        <a href="{{ path('app_backoffice_season_edit', {'id': season.id}) }}" class="btn btn-warning">Modifier</a>
+                       
+                       {% if is_granted("ROLE_ADMIN") %}
+                            {{ include('backoffice/season/_delete_form.html.twig') }}
+                        {% endif %}
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</main>    
+{% endblock %}

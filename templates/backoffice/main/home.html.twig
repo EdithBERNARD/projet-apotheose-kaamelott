@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kaamel'O'tt - Backoffice{% endblock %}
+
+{% block body %}
+
+<main>
+    
+    <div class="main-content">
+        <h1>Bienvenue sur le Backoffice Kaamel'O'tt</h1>
+    </div>
+
+    <div class="content">
+
+        <div class="row gy-5 main-bo row-cols-3 justify-content-start">
+            <div class="col" >
+                <div class="card " style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Liste des Personnages</h5>
+                        <a href="{{ path('app_backoffice_personage_browse') }}" class="btn btn-success">voir</a>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col" >
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Liste des Citations</h5>
+                        <a href="{{ path('app_backoffice_quote_browse') }}" class="btn btn-success">voir</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col" >  
+                <div class="card " style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Liste des Saisons</h5>
+                        <a href="{{ path('app_backoffice_season_browse') }}" class="btn btn-success">voir</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col" >
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Liste des Episodes</h5>
+                        <a href="{{ path('app_backoffice_episode_browse') }}" class="btn btn-success">voir</a>
+                    </div>
+                </div>
+            </div>   
+            <div class="col" >
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Liste des Quizz</h5>
+                        <a href="{{ path('app_backoffice_quizz_browse')}}" class="btn btn-success">voir</a>
+                    </div>
+                </div>
+            </div> 
+            <div class="col" >  
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Liste des Questions</h5>
+                        <a href="{{ path('app_backoffice_question_browse')}}" class="btn btn-success">voir</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col" >   
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Liste des Utilisateurs</h5>
+                        <a href="{{ path('app_backoffice_user_browse') }}" class="btn btn-success">voir</a>
+                    </div>
+                </div>
+            </div> 
+            <div class="col" >   
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Liste des Auteurs</h5>
+                        <a href="{{ path('app_backoffice_author_browse') }}" class="btn btn-success">voir</a>
+                    </div>
+                </div>
+            </div>    
+            <div class="col" >   
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Liste des Avatars</h5>
+                        <a href="{{ path('app_backoffice_avatar_browse') }}" class="btn btn-success">voir</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col" >   
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Liste des Acteurs</h5>
+                        <a href="{{ path('app_backoffice_actors_browse') }}" class="btn btn-success">voir</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

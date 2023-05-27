@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kaamel'O'tt - Episodes{% endblock %}
+
+{% block body %}
+
+<main>
+    
+    <div class="main-content">
+        <h1>Liste des Episodes</h1>
+    </div>
+
+    <div class="content">
+        <a href="{{ path('app_backoffice_episode_add') }}" class="btn btn-primary" >Ajouter un épisode</a>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Titre de l'épisode</th>
+                    <th scope="col">Numéro de l'épisode</th>
+                    <th scope="col">actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for episode in pagination %}
+                <tr>
+                <th scope="row">{{ episode.id }}</th>
+                    <td>{{ episode.title }}</td>
+                    <td>{{ episode.number }}</td>
+                    <td>
+                        <a href="{{ path('app_backoffice_episode_read', {'id': episode.id}) }}" class="btn btn-success">voir</a>
+                        <a href="{{ path('app_backoffice_episode_edit', {'id': episode.id}) }}" class="btn btn-warning">Modifier</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">Pas d'épisode trouvé !</td>
+                </tr>
+            {% endfor %}
+
+            
+
+            </tbody>
+        </table>
+        <div class="mb-3"> 
+        
+            <div class="navigation">
+                {{ knp_pagination_render(pagination) }}
+            </div>
+        {# !  https://github.com/KnpLabs/KnpPaginatorBundle/blob/master/docs/templates.md #}
+        </div>
+        
+   </div>
+</main>   
+    
+{% endblock %}
