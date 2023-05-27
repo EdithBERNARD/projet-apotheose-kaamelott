@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # projet-apotheose-kaamelott
 projet de fin de formation de développeur web et web mobile
 =======
@@ -51,4 +50,4 @@ N'ayant pas obtenu les droits de diffusion des images, nous avons pris la décis
 - Créer un fichier : `.env.local` : mettre le nom de la BDD, l'utilisateur et son mot de passe
 - Importer le fichier de la base de données `kaamelott.sql` dans Adminer. Ce fichier ce trouve dans `PROJET-13-KAAMELOTT/docs/BDD/`.
 - Lancer le serveur PHP pour lancer le site : `php -S 0.0.0.0:8000 -t public`
->>>>>>> dev
+
