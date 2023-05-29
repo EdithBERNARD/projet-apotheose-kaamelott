@@ -175,3 +175,18 @@ git pull
 ```
 
 et tout est bien récupéré
+attention pour la sécurité il vaut mieux utiliser ça cours de JB
+<!-- En passant en PROD, symfony mets en place un systeme de cache piut twig, pour que les pages ne soient recalculées à chaque fois. Optimisation oblige
+
+Si vous faites des modifications de vos twig et un git pull, il faut vider le cache. -->
+
+```bash
+sudo APP_ENV=prod APP_DEBUG=0 php bin/console cache:clear
+[sudo] password for student: 
+
+ // Clearing the cache for the prod environment with debug false                                                        
+
+                                                                                                                        
+ [OK] Cache for the "prod" environment (debug=false) was successfully cleared.                                          
+                                                                                            
+```

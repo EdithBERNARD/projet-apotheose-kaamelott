@@ -23,6 +23,7 @@ let userInput = document.getElementById("userId");
 var questions = {};
 
 // the getQuestions function is used to retrieve information from the API
+//* on utilise cette fonction pour récuperer les info à partir de l'API
 async function getQuestions() {
 
     const req = await fetch(`${urlQuizz}`); 
@@ -34,6 +35,7 @@ async function getQuestions() {
 }
 
 // the getQuizz function is used to retrieve information from the API
+//* on utilise cette fonction pour récuperer les info à partir de l'API
 async function getQuizz() {
 
     const req = await fetch(`${urlQuizz}`); 
@@ -44,13 +46,12 @@ async function getQuizz() {
 }
 
 // The next function allows you to move on to the next question. At the last question answered, the score is displayed with the resultats function
+//* avec next on passe à la ? suivante , resultat affiche le score
 async function next(){
 	let questions = await this.getQuestions();
-	
+	//* si on notre index+1 = le nb de question on fournit le résultat final sinon on donne le score actuel / le nb de question et on affiche la question
     if (current_index+1 == questions.length){
-		
 		resultats();
-        
     }else{
 		scoreContainer.innerHTML = "Score: " + score + " / " + questions.length;
         showQuestion((current_index+1));
@@ -58,6 +59,7 @@ async function next(){
 }
 
 // the resultats function allows the display of the score and the button to start again and to register the score in db
+//* cette fonction affice le resultat et enregistre le score dans la bdd
 async function resultats(){
 	let quizzId = await this.getQuizz();
 	let questions = await this.getQuestions();
@@ -72,11 +74,15 @@ async function resultats(){
 	scoreDiv.style.visibility = 'visible';
     resultat.style.visibility = 'visible';
 	
+	//* pour affiche le score
 	// display button score (top)
 	scoreContainer.innerHTML = "Score: " + score + " / " + questions.length;
 	// display score (bottom)
 	scoreDiv.innerHTML = `Vous avez ${score} bonnes réponses sur ${questions.length}`;
 	
+	//* envoie le score sur la page profil de l'utilisateur 
+	//* fetch permet d'effectuer des requètes HTTP ici on envoie en POST les 3 info suivantes l'id du quizz,
+	//* le score obtenu et l'id de l'utilisateur)
 	// Send score to profil user (->backoffice -> BDD)
 	fetch(`${newUrl}api/play/quizz/add`, {
 	method: 'POST',
@@ -86,24 +92,31 @@ async function resultats(){
 		"user": userId
 	  })
 	})
+	//* la requète est réussie on affiche le message de succes
 	.then(response => {
 		profilDiv.innerHTML = "Votre score a été ajouté dans votre profil";
 	})
+	//* sinon mess d'erreur
 	.catch(error => console.error(error));
 
 	againDiv.innerHTML = "<button  type='submit'  id='againButton' onclick=\"startAgainQuiz()\";>Recommencer</button>";
 	
 }
 
+//* cette fonction permet de comparer la réponse donnée avec la bonne réponse 
 // the compare function compares the player's answer with the correct answer
 function compare  (a,b){
+
+	//* on icrémente de 1 si a est inclu dans b
 	if (b.includes(a)){
 		score +=1;
 	}
+	//* dans tous les cas on passe à la question suivante
  	next();
 }
 
 // the showQuestion function displays the question
+//* cette fonction affiche la question et le choix de réponse
 async function showQuestion(index){
 	
 	current_index = index;
@@ -116,6 +129,7 @@ async function showQuestion(index){
 	titleElement.innerHTML = questions[index].title;
 
 	answers.innerHTML = "";
+	//* au clic on appelle la fonction compare(repose x,bonne réponse)
 	answers.innerHTML += "<button type='submit' class='answer' value='"+questions[index].answer1+"' onclick=\"compare(\'"+questions[index].answer1+"\',\'"+questions[index].goodAnswer+"\');\" > "+questions[index].answer1+"</button>"; 
     answers.innerHTML += "<button type='submit' class='answer' value='"+questions[index].answer2+"' onclick=\"compare(\'"+questions[index].answer2+"\',\'"+questions[index].goodAnswer+"\');\" > "+questions[index].answer2+" </button>"; 
     answers.innerHTML += "<button type='submit' class='answer' value='"+questions[index].answer3+"' onclick=\"compare(\'"+questions[index].answer3+"\',\'"+questions[index].goodAnswer+"\');\" > "+questions[index].answer3+"</button>"; 
@@ -124,6 +138,7 @@ async function showQuestion(index){
 }
 
 // the startAgainQuiz function allows you to restart the quiz
+//* permet de recommencer le quizz
 function startAgainQuiz(){
 	
 	resultatContainer.style.visibility = 'hidden';
